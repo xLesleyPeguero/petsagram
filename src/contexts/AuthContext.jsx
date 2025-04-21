@@ -12,7 +12,6 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (username, password, firstName, lastName) => {
     try {
-      // Validate input
       if (!username || !password || !firstName || !lastName) {
         throw new Error('All fields are required');
       }
@@ -21,7 +20,6 @@ export const AuthProvider = ({ children }) => {
         throw new Error('Password must be at least 6 characters long');
       }
 
-      // Check if username already exists
       const usersRef = collection(db, 'users');
       const q = query(usersRef, where('username', '==', username));
       const querySnapshot = await getDocs(q);
@@ -30,7 +28,6 @@ export const AuthProvider = ({ children }) => {
         throw new Error('Username already exists');
       }
 
-      // Create user document in Firestore
       const userRef = doc(collection(db, 'users'));
       const userData = {
         id: userRef.id,
@@ -43,7 +40,6 @@ export const AuthProvider = ({ children }) => {
       
       await setDoc(userRef, userData);
       
-      // Set current user after successful registration
       setCurrentUser({
         id: userRef.id,
         username,
@@ -64,7 +60,6 @@ export const AuthProvider = ({ children }) => {
         throw new Error('Username and password are required');
       }
 
-      // Find user by username
       const usersRef = collection(db, 'users');
       const q = query(usersRef, where('username', '==', username));
       const querySnapshot = await getDocs(q);
@@ -76,12 +71,10 @@ export const AuthProvider = ({ children }) => {
       const userDoc = querySnapshot.docs[0];
       const userData = userDoc.data();
 
-      // Check password (in plain text)
       if (userData.password !== password) {
         throw new Error('Invalid username or password');
       }
 
-      // Remove password from user data before setting current user
       const { password: _, ...userWithoutPassword } = userData;
       setCurrentUser(userWithoutPassword);
       return userWithoutPassword;

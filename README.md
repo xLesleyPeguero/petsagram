@@ -74,7 +74,6 @@ npm install
 3. Configurar variables de entorno:
 ```bash
 cp .env.example .env
-# Configurar las variables de Firebase
 ```
 
 4. Iniciar el servidor de desarrollo:
@@ -99,6 +98,7 @@ Interfaz de inicio de sesión simple y segura.
 
 ### 📝 Creación de Posts
 ![New Post](./screenshots/new-post.png)
+![New Post](./screenshots/create-post.png)
 Interfaz para crear nuevas publicaciones con:
 - Carga de imágenes con vista previa
 - Campo para título
@@ -106,7 +106,7 @@ Interfaz para crear nuevas publicaciones con:
 - Compresión automática de imágenes
 
 ### ❤️ Interacción Social
-![Post Detail](./screenshots/post-detail.png)
+![Post Detail](./screenshots/likes.png)
 Cada publicación muestra:
 - Imagen de la mascota
 - Título y descripción

@@ -29,7 +29,6 @@ const NewPost = () => {
                     let width = img.width;
                     let height = img.height;
 
-                    // Calculate new dimensions while maintaining aspect ratio
                     if (width > height) {
                         if (width > MAX_IMAGE_SIZE) {
                             height = Math.round((height * MAX_IMAGE_SIZE) / width);
@@ -48,7 +47,6 @@ const NewPost = () => {
                     const ctx = canvas.getContext('2d');
                     ctx.drawImage(img, 0, 0, width, height);
 
-                    // Compress as JPEG with 0.8 quality
                     const compressedBase64 = canvas.toDataURL('image/jpeg', 0.8);
                     resolve(compressedBase64);
                 };
@@ -61,12 +59,10 @@ const NewPost = () => {
     const handleImageChange = async (e) => {
         const file = e.target.files[0];
         if (file) {
-            // Validate file type
             if (!file.type.startsWith('image/')) {
                 setError('Please select an image file');
                 return;
             }
-            // Validate file size (max 5MB for initial upload)
             if (file.size > 5 * 1024 * 1024) {
                 setError('Image size should be less than 5MB');
                 return;
@@ -100,16 +96,13 @@ const NewPost = () => {
         setError("");
 
         try {
-            // Use the compressed image
             const imageBase64 = previewUrl;
 
-            // Verify the size of the base64 string
             const base64Size = Math.ceil((imageBase64.length * 3) / 4);
-            if (base64Size > 900000) { // Keep some buffer below 1MB limit
+            if (base64Size > 900000) { 
                 throw new Error('Compressed image is still too large. Please try a smaller image.');
             }
 
-            // Create post in Firestore
             const postData = {
                 userId: currentUser?.id || 'anonymous',
                 username: currentUser?.username || 'anonymous',

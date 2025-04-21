@@ -8,13 +8,11 @@ export const usePosts = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Create a query for the posts collection, ordered by createdAt in descending order
     const postsQuery = query(
       collection(db, 'posts'),
       orderBy('createdAt', 'desc')
     );
 
-    // Set up real-time listener
     const unsubscribe = onSnapshot(
       postsQuery,
       (snapshot) => {
@@ -32,7 +30,6 @@ export const usePosts = () => {
       }
     );
 
-    // Cleanup subscription on unmount
     return () => unsubscribe();
   }, []);
 
