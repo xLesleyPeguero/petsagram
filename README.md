@@ -116,20 +116,12 @@ Cada publicación muestra:
 
 
 ## 🔒 Configuración de Firebase
-
+![FirebaseConfig](./screenshots/firebase-config.png)
 El proyecto utiliza los siguientes servicios de Firebase:
 - Authentication para gestión de usuarios
 - Firestore Database para almacenamiento de datos
 - Storage para almacenamiento de imágenes
 
-## 🤝 Contribución
-
-Si deseas contribuir al proyecto:
-1. Haz un Fork del repositorio
-2. Crea una rama para tu característica (`git checkout -b feature/NuevaCaracteristica`)
-3. Haz commit de tus cambios (`git commit -m 'Añadir nueva característica'`)
-4. Haz Push a la rama (`git push origin feature/NuevaCaracteristica`)
-5. Abre un Pull Request
 
 ## 📝 Licencia
 
